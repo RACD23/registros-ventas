@@ -318,24 +318,114 @@ void mostrarProductos() {
     system("pause");
 }
 
-int main() {
-    cargarProductos();
 
+void menuVentas() {
     int opcion;
+
     do {
-        system("cls");
-        printf("\x1b[33m");
-        printf("Menu de opciones:\n");
-        printf("1. Agregar Producto\n");
-        printf("2. Buscar Producto\n");
-        printf("3. Pagar Producto\n");
-        printf("4. Modificar Producto\n");
-        printf("5. Eliminar Producto\n");
-        printf("6. Mostrar Productos\n");
-        printf("7. Salir\n");
-        printf("Ingrese la opcion deseada: ");
-        scanf("%d", &opcion);
+        printf("\x1B[33m");
+        printf("============================\t\n");
+        printf("-------- Menu Ventas -------\t\n");
+        printf("============================\t\n");
         printf("\x1B[37m");
+        printf("1) Buscar Producto\n");
+        printf("2) Mostrar Productos\n");
+        printf("3) Pagar\n");
+        printf("4) Salir\n");
+        printf("Seleccione una opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                buscarProducto();
+                break;
+            case 2:
+                mostrarProductos();
+                break;
+            case 3:
+                pagarProducto();
+                break;
+            case 4:
+                printf("\x1B[31m");
+                printf("Saliendo del menú Ventas...\n");
+                break;
+            default:
+                printf("\x1B[31m");
+                printf("Opción inválida. Intente nuevamente.\n");
+                break;
+        }
+
+        printf("\n");
+    } while (opcion != 4);
+}
+
+void menuAlmacen() {
+    int opcion;
+
+    do {
+        printf("\x1B[33m");
+        printf("============================\t\n");
+        printf("------- Menu Almacen -------\t\n");
+        printf("============================\t\n");
+        printf("\x1B[37m");
+        printf("1) Agregar Producto\n");
+        printf("2) Buscar Producto\n");
+        printf("3) Modificar Producto\n");
+        printf("4) Eliminar Producto\n");
+        printf("5) Mostrar Productos\n");
+        printf("6) Salir\n");
+        printf("Seleccione una opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                agregarProducto();
+                break;
+            case 2:
+                buscarProducto();
+                break;
+            case 3:
+                modificarProducto();
+                break;
+            case 4:
+                eliminarProducto();
+                break;
+            case 5:
+                mostrarProductos();
+                break;
+            case 6:
+                printf("\x1B[31m");
+                printf("Saliendo del menú Almacén...\n");
+                break;
+            default:
+                printf("\x1B[31m");
+                printf("Opción inválida. Intente nuevamente.\n");
+                break;
+        }
+
+        printf("\n");
+    } while (opcion != 6);
+}
+
+void menuGerente() {
+    int opcion;
+
+    do {
+        printf("\x1B[33m");
+        printf("============================\t\n");
+        printf("------- Menu Gerente -------\t\n");
+        printf("============================\t\n");
+        printf("\x1B[37m");
+        printf("1) Agregar Producto\n");
+        printf("2) Buscar Producto\n");
+        printf("3) Pagar\n");
+        printf("4) Modificar Producto\n");
+        printf("5) Eliminar Producto\n");
+        printf("6) Mostrar Productos\n");
+        printf("7) Salir\n");
+        printf("Seleccione una opción: ");
+        scanf("%d", &opcion);
+
         switch (opcion) {
             case 1:
                 agregarProducto();
@@ -357,16 +447,55 @@ int main() {
                 break;
             case 7:
                 printf("\x1B[31m");
-                printf("Saliendo del programa...\n");
-                system("pause");
-                return 0;
+                printf("Saliendo del menú Gerente...\n");
+                break;
             default:
                 printf("\x1B[31m");
-                printf("Opcion no valida. Intente de nuevo.\n");
-                system("pause");
+                printf("Opción inválida. Intente nuevamente.\n");
                 break;
         }
+
+        printf("\n");
     } while (opcion != 7);
+}
+
+int main() {
+    cargarProductos();
+
+    int rol;
+
+    printf("\x1B[33m");
+    printf("============================\t\n");
+    printf("----Indentifique su roll----\t\n");
+    printf("============================\t\n");
+    printf("\x1B[37m");
+    printf("1) Ejecutivo de ventas\n");
+    printf("2) Personal de almacen\n");
+    printf("3) Gerente\n");
+    printf("Seleccione un rol: ");
+    scanf("%d", &rol);
+
+    switch (rol) {
+        case 1:
+            menuVentas();
+            break;
+        case 2:
+            menuAlmacen();
+            break;
+        case 3:
+            menuGerente();
+            break;
+        case 4:
+            printf("\x1B[31m");
+            printf("Saliendo del programa...\n");
+            system("pause");
+            return 0;
+        default:
+            printf("\x1B[31m");
+            printf("Rol Invalido. Intente nuevamente.\n");
+            system("pause");
+            break;
+    } while (rol != 4);
 
     return 0;
 }
